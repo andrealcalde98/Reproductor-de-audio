@@ -1,5 +1,6 @@
 package m06.uf1.audioplayer;
 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -7,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JTable;
 
 public class Vista {
@@ -21,6 +23,8 @@ public class Vista {
     private JButton stop;
     private JButton pausa;
     private JButton continuar;
+    private JPanel panelScrollBar;
+    private JScrollBar slider;
 
     public Vista() {
 
@@ -49,11 +53,17 @@ public class Vista {
         panellinf.add(pausa);
         panellinf.add(continuar);
         panellinf.add(stop);
+        //scroll
+        panelScrollBar = new JPanel();
+        slider = new JScrollBar();
+        slider.setOrientation(0);
+        panelScrollBar.add(slider);
        
         
                     
         finestra.add(panellsup);
         finestra.add(panellinf);
+        finestra.add(panelScrollBar);
         finestra.pack();
         finestra.setVisible(true);        
         finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,6 +73,30 @@ public class Vista {
 
     public JFrame getFinestra() {
         return finestra;
+    }
+
+    public JPanel getPanellsup() {
+        return panellsup;
+    }
+
+    public void setPanellsup(JPanel panellsup) {
+        this.panellsup = panellsup;
+    }
+
+    public JPanel getPanelScrollBar() {
+        return panelScrollBar;
+    }
+
+    public void setPanelScrollBar(JPanel panelScrollBar) {
+        this.panelScrollBar = panelScrollBar;
+    }
+
+    public JScrollBar getSlider() {
+        return slider;
+    }
+
+    public void setSlider(JScrollBar slider) {
+        this.slider = slider;
     }
 
     public void setFinestra(JFrame finestra) {
