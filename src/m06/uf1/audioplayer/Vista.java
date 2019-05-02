@@ -1,8 +1,5 @@
 package m06.uf1.audioplayer;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -11,16 +8,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 
 public class Vista {
 
     private JFrame finestra;
     private JPanel panellsup;
-    private JPanel panellinf;
-    private JLabel reproduint;
-    private JComboBox listas;
-    private JTable canciones;
+    private final JPanel panellinf;
+    private final JLabel reproduint;
+    private final JComboBox listas;
+    private final JTable canciones;
     private JButton play;
     private JButton stop;
     private JButton pausa;
