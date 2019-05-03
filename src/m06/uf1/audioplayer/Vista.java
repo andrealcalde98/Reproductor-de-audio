@@ -28,7 +28,7 @@ public class Vista {
 
         finestra = new JFrame("Reproductor Àudio");
         finestra.setSize(1200, 800);
-        //finestra.setResizable(false);
+        finestra.setResizable(true);
         finestra.setLocationRelativeTo(null);
         finestra.setLayout(new BoxLayout(finestra.getContentPane(),BoxLayout.Y_AXIS));
         //superior
