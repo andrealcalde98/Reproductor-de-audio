@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JSlider;
 import javax.swing.JTable;
 
 public class Vista {
@@ -24,8 +25,7 @@ public class Vista {
     private JButton pausa;
     private JButton continuar;
     private JPanel panelScrollBar;
-    private JScrollBar slider;
-
+    private JSlider slider;
     public Vista() {
 
         finestra = new JFrame("Reproductor Àudio");
@@ -39,6 +39,8 @@ public class Vista {
         reproduint = new JLabel("cancion en reproduccion");
         listas = new JComboBox();
         canciones = new JTable();
+        //canciones.addColumnSelectionInterval(1,1);
+
         panellsup.add(canciones);
         panellsup.add(reproduint);
         panellsup.add(listas);
@@ -55,8 +57,9 @@ public class Vista {
         panellinf.add(stop);
         //scroll
         panelScrollBar = new JPanel();
-        slider = new JScrollBar();
+        slider = new JSlider();
         slider.setOrientation(0);
+        slider.setValue(0);
         panelScrollBar.add(slider);
        
         
@@ -91,11 +94,11 @@ public class Vista {
         this.panelScrollBar = panelScrollBar;
     }
 
-    public JScrollBar getSlider() {
+    public JSlider getSlider() {
         return slider;
     }
 
-    public void setSlider(JScrollBar slider) {
+    public void setSlider(JSlider slider) {
         this.slider = slider;
     }
 
