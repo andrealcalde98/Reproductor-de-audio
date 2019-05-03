@@ -13,6 +13,6 @@ import java.io.FileNotFoundException;
 
 public class ReproductorAudio {
     public static void main(String[] args) throws FileNotFoundException {
-        Controlador controlador = new Controlador();     
+        Vista vista = new Vista();     
     }
 }
