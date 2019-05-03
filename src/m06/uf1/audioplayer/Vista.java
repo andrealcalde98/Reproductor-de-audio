@@ -42,8 +42,11 @@ public class Vista extends JFrame{
         Object[][] datos = { {"Hola", "ACDC"}};          
         String[] columnNames = {"Titulo","Autor"}; 
         DefaultTableModel dtm= new DefaultTableModel(datos, columnNames); 
-        canciones = new JTable(dtm);   
-        panellsup.add(canciones);
+        canciones = new JTable(dtm);
+        JScrollPane scrollPane = new JScrollPane(canciones);
+        canciones.setFillsViewportHeight(true);
+        canciones.setPreferredScrollableViewportSize(new Dimension(250, 100)); 
+        panellsup.add(scrollPane);
         panellsup.add(reproduint);
         panellsup.add(listas);
         //inferior
