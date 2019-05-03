@@ -39,8 +39,8 @@ public class Vista extends JFrame{
         panellsup = new JPanel();
         reproduint = new JLabel("cancion en reproduccion");
         listas = new JComboBox();
-        Object[][] datos = { {"Hola", "ACDC"}};          
-        String[] columnNames = {"Titulo","Autor"}; 
+        Object[][] datos = { {"Hola", "ACDC", "Hard Rock"}};          
+        String[] columnNames = {"Titulo","Autor","Album"}; 
         DefaultTableModel dtm= new DefaultTableModel(datos, columnNames); 
         canciones = new JTable(dtm);
         JScrollPane scrollPane = new JScrollPane(canciones);
