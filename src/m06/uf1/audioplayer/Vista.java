@@ -1,5 +1,7 @@
 package m06.uf1.audioplayer;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -7,10 +9,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-public class Vista {
+public class Vista extends JFrame{
 
     private JFrame finestra;
     private JPanel panellsup;
@@ -33,12 +37,12 @@ public class Vista {
         finestra.setLayout(new BoxLayout(finestra.getContentPane(),BoxLayout.Y_AXIS));
         //superior
         panellsup = new JPanel();
-        panellsup.setLayout(new GridLayout(1, 3));
         reproduint = new JLabel("cancion en reproduccion");
         listas = new JComboBox();
-        canciones = new JTable();
-        //canciones.addColumnSelectionInterval(1,1);
-
+        Object[][] datos = { {"Hola", "ACDC"}};          
+        String[] columnNames = {"Titulo","Autor"}; 
+        DefaultTableModel dtm= new DefaultTableModel(datos, columnNames); 
+        canciones = new JTable(dtm);   
         panellsup.add(canciones);
         panellsup.add(reproduint);
         panellsup.add(listas);
