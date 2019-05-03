@@ -35,10 +35,14 @@ public class Vista extends JFrame{
         finestra.setResizable(true);
         finestra.setLocationRelativeTo(null);
         finestra.setLayout(new BoxLayout(finestra.getContentPane(),BoxLayout.Y_AXIS));
+        
         //superior
         panellsup = new JPanel();
+        //ETIQUETA
         reproduint = new JLabel("cancion en reproduccion");
+        //COMBOBOX
         listas = new JComboBox();
+        //MODIFICACION TABLA
         Object[][] datos = { {"Hola", "ACDC", "Hard Rock"}};          
         String[] columnNames = {"Titulo","Autor","Album"}; 
         DefaultTableModel dtm= new DefaultTableModel(datos, columnNames); 
@@ -49,6 +53,7 @@ public class Vista extends JFrame{
         panellsup.add(scrollPane);
         panellsup.add(reproduint);
         panellsup.add(listas);
+        
         //inferior
         panellinf = new JPanel();
         panellinf.setLayout(new GridLayout(1,4));
@@ -60,6 +65,7 @@ public class Vista extends JFrame{
         panellinf.add(pausa);
         panellinf.add(continuar);
         panellinf.add(stop);
+       
         //scroll
         panelScrollBar = new JPanel();
         slider = new JSlider();
