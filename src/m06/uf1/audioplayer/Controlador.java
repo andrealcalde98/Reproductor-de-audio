@@ -23,6 +23,8 @@ public class Controlador implements ActionListener {
         vista.getContinuar().addActionListener(this);
     }
 
+    
+    
     //Dotem de funcionalitat als botons
     public void actionPerformed(ActionEvent esdeveniment) {
         //Declarem el gestor d'esdeveniments

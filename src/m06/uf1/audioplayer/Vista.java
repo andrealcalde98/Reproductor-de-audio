@@ -42,6 +42,8 @@ public class Vista extends JFrame{
         reproduint = new JLabel("cancion en reproduccion");
         //COMBOBOX
         listas = new JComboBox();
+        listas.addItem("Lista 1");
+        listas.addItem("Lista 2");
         //MODIFICACION TABLA
         Object[][] datos = { {"Hola", "ACDC", "Hard Rock"}};          
         String[] columnNames = {"Titulo","Autor","Album"}; 
