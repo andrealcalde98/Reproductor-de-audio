@@ -22,14 +22,11 @@ import org.json.simple.parser.ParseException;
  * @author jmartin
  */
 public class LlegeixJSON {
-
-    private static final String filePath = "json/lista1.json";
-    
-    public static void main(String[] args) {
-        try {
-            ArrayList<Cancion> cancion = new ArrayList();
+        public static ArrayList ListCanciones() { 
+         ArrayList<Cancion> cancion = new ArrayList();
+        try {          
             JSONParser parser = new JSONParser();
-            Object obj = parser.parse(new FileReader(filePath));
+            Object obj = parser.parse(new FileReader("json/lista1.json"));
             JSONArray json = (JSONArray) obj;
             for (int i = 0; i < json.size(); i++) {
                 JSONObject object = (JSONObject) json.get(i);
@@ -46,9 +43,8 @@ public class LlegeixJSON {
                 System.out.println("------------------------------------");
                 Cancion info = new Cancion(nom,autor,album);
                 cancion.add(info);
-                System.out.println(cancion);                                     
-                                
-                
+                System.out.println(cancion);  
+                                                   
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -59,6 +55,6 @@ public class LlegeixJSON {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
+        return cancion;  
+    }          
 }

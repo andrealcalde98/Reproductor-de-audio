@@ -5,14 +5,24 @@
  */
 package m06.uf1.audioplayer;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 /**
  *
  * @author analc
  */
 public class Cancion {
-    private String nom;
-    private String autor;
-    private String album;
+    String nom;
+    String autor;
+    String album;
 
     public Cancion(String nom, String autor, String album) {
         this.nom = nom;
@@ -24,9 +34,4 @@ public class Cancion {
     public String toString() {
         return nom +' '+ autor +' '+ album;
     }
-
-   
-    
-    
-    
 }
