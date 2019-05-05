@@ -22,7 +22,6 @@ import org.json.simple.parser.ParseException;
  * @author jmartin
  */
 public class LlegeixJSON {
-
     public static ArrayList ListCanciones() {
         ArrayList<Cancion> cancion = new ArrayList();
         try {
