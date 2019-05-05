@@ -1,11 +1,9 @@
 package m06.uf1.audioplayer;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -17,33 +15,30 @@ import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-public class Vista extends JFrame{
+public class Vista extends JFrame {
 
     private JFrame finestra;
     private JPanel panellsup;
     private final JPanel panellinf;
     private final JLabel reproduint;
     private final JComboBox listas;
-    private final JTable canciones;
+    private JTable canciones;
     private JButton play;
     private JButton stop;
     private JButton pausa;
     private JButton continuar;
     private JPanel panelScrollBar;
     private JSlider slider;
+
     public Vista() {
 
         finestra = new JFrame("Reproductor Àudio");
         finestra.setSize(1200, 800);
         finestra.setResizable(true);
         finestra.setLocationRelativeTo(null);
-        finestra.setLayout(new BoxLayout(finestra.getContentPane(),BoxLayout.Y_AXIS));
-        
+        finestra.setLayout(new BoxLayout(finestra.getContentPane(), BoxLayout.Y_AXIS));
+
         //superior
         panellsup = new JPanel();
         //ETIQUETA
@@ -52,35 +47,44 @@ public class Vista extends JFrame{
         listas = new JComboBox();
         listas.addItem("Lista 1");
         listas.addItem("Lista 2");
-        listas.addItem("Totes les cançons");       
+        listas.addItem("Totes les cançons");
         //MODIFICACION TABLA
-         
+        listas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == listas) {
+                    String seleccionado = (String) listas.getSelectedItem();
+                    if (seleccionado == "Lista 1") {
+
+                    }
+                }
+            }
+        });
         LlegeixJSON lee = new LlegeixJSON();
         ArrayList<Cancion> list = lee.ListCanciones();
-        Object rowData[] = new Object[3];                         
-        Object[][] datos = null;          
-        String[] columnNames = {"Titulo","Autor","Album"}; 
-        DefaultTableModel dtm= new DefaultTableModel(datos, columnNames); 
+        Object rowData[] = new Object[3];
+        Object[][] datos = null;
+        String[] columnNames = {"Titulo", "Autor", "Album"};
+        DefaultTableModel dtm = new DefaultTableModel(datos, columnNames);
         canciones = new JTable(dtm);
-        for(int i = 0; i < list.size(); i++)
-        {
+        for (int i = 0; i < list.size(); i++) {
             rowData[0] = list.get(i).nom;
             rowData[1] = list.get(i).autor;
             rowData[2] = list.get(i).album;
             dtm.addRow(rowData);
-           
-        }  
+
+        }
         JScrollPane scrollPane = new JScrollPane(canciones);
         canciones.setFillsViewportHeight(true);
-        canciones.setPreferredScrollableViewportSize(new Dimension(250, 100)); 
+        canciones.setPreferredScrollableViewportSize(new Dimension(250, 100));
         panellsup.add(scrollPane);
-                
+
         panellsup.add(reproduint);
         panellsup.add(listas);
-        
+
         //inferior
         panellinf = new JPanel();
-        panellinf.setLayout(new GridLayout(1,4));
+        panellinf.setLayout(new GridLayout(1, 4));
         play = new JButton("Play");
         stop = new JButton("Stop");
         pausa = new JButton("Pause");
@@ -89,26 +93,23 @@ public class Vista extends JFrame{
         panellinf.add(pausa);
         panellinf.add(continuar);
         panellinf.add(stop);
-       
+
         //scroll
         panelScrollBar = new JPanel();
         slider = new JSlider();
         slider.setOrientation(0);
         slider.setValue(0);
         panelScrollBar.add(slider);
-       
-        
-                    
+
         finestra.add(panellsup);
         finestra.add(panellinf);
         finestra.add(panelScrollBar);
         finestra.pack();
-        finestra.setVisible(true);        
+        finestra.setVisible(true);
         finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 
-    
     public JFrame getFinestra() {
         return finestra;
     }
