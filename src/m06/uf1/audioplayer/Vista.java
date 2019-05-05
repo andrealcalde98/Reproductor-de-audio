@@ -29,7 +29,7 @@ public class Vista extends JFrame{
     private JPanel panelScrollBar;
     private JSlider slider;
     public Vista() {
-
+        LlegeixJSON llegeix = new LlegeixJSON();
         finestra = new JFrame("Reproductor Àudio");
         finestra.setSize(1200, 800);
         finestra.setResizable(true);
@@ -45,8 +45,8 @@ public class Vista extends JFrame{
         listas.addItem("Lista 1");
         listas.addItem("Lista 2");
         //MODIFICACION TABLA
-        Object[][] datos = { {"Hola", "ACDC", "Hard Rock"}};          
-        String[] columnNames = {"Titulo","Autor","Album"}; 
+        Object[][] datos = { {llegeix}};          
+        String[] columnNames = {"Titulo","Autor","Album","Durada"}; 
         DefaultTableModel dtm= new DefaultTableModel(datos, columnNames); 
         canciones = new JTable(dtm);
         JScrollPane scrollPane = new JScrollPane(canciones);
