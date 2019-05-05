@@ -3,6 +3,10 @@ package m06.uf1.audioplayer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,6 +17,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Vista extends JFrame{
 
@@ -29,7 +37,7 @@ public class Vista extends JFrame{
     private JPanel panelScrollBar;
     private JSlider slider;
     public Vista() {
-        LlegeixJSON llegeix = new LlegeixJSON();
+
         finestra = new JFrame("Reproductor Àudio");
         finestra.setSize(1200, 800);
         finestra.setResizable(true);
@@ -44,16 +52,29 @@ public class Vista extends JFrame{
         listas = new JComboBox();
         listas.addItem("Lista 1");
         listas.addItem("Lista 2");
-        listas.addItem("Totes les cançons");
+        listas.addItem("Totes les cançons");       
+
         //MODIFICACION TABLA
-        Object[][] datos = { {llegeix}};          
-        String[] columnNames = {"Titulo","Autor","Album","Durada"}; 
+        LlegeixJSON lee = new LlegeixJSON();
+        ArrayList<Cancion> list = lee.ListCanciones();
+        Object rowData[] = new Object[3];                         
+        Object[][] datos = null;          
+        String[] columnNames = {"Titulo","Autor","Album"}; 
         DefaultTableModel dtm= new DefaultTableModel(datos, columnNames); 
         canciones = new JTable(dtm);
+        for(int i = 0; i < list.size(); i++)
+        {
+            rowData[0] = list.get(i).nom;
+            rowData[1] = list.get(i).autor;
+            rowData[2] = list.get(i).album;
+            dtm.addRow(rowData);
+           
+        }  
         JScrollPane scrollPane = new JScrollPane(canciones);
         canciones.setFillsViewportHeight(true);
         canciones.setPreferredScrollableViewportSize(new Dimension(250, 100)); 
         panellsup.add(scrollPane);
+                
         panellsup.add(reproduint);
         panellsup.add(listas);
         
@@ -87,7 +108,7 @@ public class Vista extends JFrame{
 
     }
 
-
+    
     public JFrame getFinestra() {
         return finestra;
     }

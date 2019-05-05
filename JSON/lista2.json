@@ -1,14 +1,14 @@
 [
 {
-        "nom":"Hells Bells",
-        "autor":"ACDC",
-        "album":"Hard Rock",
-        "durada":311,
-        "ruta":"audios/acdc - hells bells.mp3"},
+        "nom":"Controlla",
+        "autor":"Drake",
+        "album":"R&B",
+        "durada":235,
+        "ruta":"audios/drake - controlla.mp3"},
 {
-        "nom":"Hells Bells",
-        "autor":"ACDC",
-        "album":"Hard Rock",
-        "durada":311,
-        "ruta":"audios/acdc - hells bells.mp3"}
+        "nom":"Hotline Bling",
+        "autor":"Drale",
+        "album":"R&B",
+        "durada":295,
+        "ruta":"audios/drake - hotline bling.mp3"}
     ]
