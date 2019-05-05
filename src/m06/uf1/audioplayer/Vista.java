@@ -44,6 +44,7 @@ public class Vista extends JFrame{
         listas = new JComboBox();
         listas.addItem("Lista 1");
         listas.addItem("Lista 2");
+        listas.addItem("Totes les cançons");
         //MODIFICACION TABLA
         Object[][] datos = { {llegeix}};          
         String[] columnNames = {"Titulo","Autor","Album","Durada"}; 
