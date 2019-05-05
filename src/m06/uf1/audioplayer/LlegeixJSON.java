@@ -57,4 +57,74 @@ public class LlegeixJSON {
         }
         return cancion;  
     }          
+        public static ArrayList ListCanciones2() { 
+         ArrayList<Cancion> cancion = new ArrayList();
+        try {          
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(new FileReader("json/lista1.json"));
+            JSONArray json = (JSONArray) obj;
+            for (int i = 0; i < json.size(); i++) {
+                JSONObject object = (JSONObject) json.get(i);
+                String nom = object.get("nom").toString();
+                String autor = object.get("autor").toString();
+                String album = object.get("album").toString();
+                String durada = object.get("durada").toString();
+                String ruta = object.get("ruta").toString();
+                System.out.println(nom);
+                System.out.println(autor);
+                System.out.println(album);
+                System.out.println(durada);
+                System.out.println(ruta);
+                System.out.println("------------------------------------");
+                Cancion info = new Cancion(nom,autor,album);
+                cancion.add(info);
+                System.out.println(cancion);  
+                                                                                    
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cancion;  
+    }          
+        public static ArrayList ListCancionesTotal() { 
+         ArrayList<Cancion> cancion = new ArrayList();
+        try {          
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(new FileReader("json/lista1.json"));
+            JSONArray json = (JSONArray) obj;
+            for (int i = 0; i < json.size(); i++) {
+                JSONObject object = (JSONObject) json.get(i);
+                String nom = object.get("nom").toString();
+                String autor = object.get("autor").toString();
+                String album = object.get("album").toString();
+                String durada = object.get("durada").toString();
+                String ruta = object.get("ruta").toString();
+                System.out.println(nom);
+                System.out.println(autor);
+                System.out.println(album);
+                System.out.println(durada);
+                System.out.println(ruta);
+                System.out.println("------------------------------------");
+                Cancion info = new Cancion(nom,autor,album);
+                cancion.add(info);
+                System.out.println(cancion);  
+                                                                                    
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cancion;  
+    }          
 }

@@ -53,7 +53,6 @@ public class Vista extends JFrame{
         listas.addItem("Lista 1");
         listas.addItem("Lista 2");
         listas.addItem("Totes les cançons");       
-
         //MODIFICACION TABLA
         LlegeixJSON lee = new LlegeixJSON();
         ArrayList<Cancion> list = lee.ListCanciones();
