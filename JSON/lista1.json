@@ -2,13 +2,13 @@
 {
         "nom":"Hells Bells",
         "autor":"ACDC",
-        "album":"Hard Rock",
+        "album":"Rock",
         "durada":311,
         "ruta":"audios/acdc - hells bells.mp3"},
 {
-        "nom":"Hells Bells",
-        "autor":"ACDC",
-        "album":"Hard Rock",
-        "durada":311,
-        "ruta":"audios/acdc - hells bells.mp3"}
+        "nom":"How you remind me",
+        "autor":"Nickelback",
+        "album":"Rock",
+        "durada":227,
+        "ruta":"audios/nickelback - how you remind me.mp3"}
     ]
