@@ -25,5 +25,16 @@ public class Audio {
     public void setPlayer(BasicPlayer player) {
         this.player = player;
     }
+ public void siguiente() {
 
+    }
+
+    public void anterior() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "Audio{" + "player=" + player + '}';
+    }
 }

@@ -20,18 +20,85 @@ import org.json.simple.parser.ParseException;
  * @author analc
  */
 public class Cancion {
-    String nom;
-    String autor;
-    String album;
+    private String nom;
+    private String autor;
+    private String album;
+    private int durada;
+    private String rutaArxiu;
+    private String rutaImatge;
+    private int any;
 
-    public Cancion(String nom, String autor, String album) {
+    public Cancion(String nom, String autor, String album, int durada, String rutaArxiu,String rutaImatge, int any) {
         this.nom = nom;
         this.autor = autor;
         this.album = album;
+        this.durada = durada;
+        this.rutaArxiu = rutaArxiu;
+        this.rutaImatge = rutaImatge;
+        this.any = any;
     }
 
+    public Cancion() {
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public int getDurada() {
+        return durada;
+    }
+
+    public void setDurada(int durada) {
+        this.durada = durada;
+    }
+
+    public String getRutaArxiu() {
+        return rutaArxiu;
+    }
+
+    public void setRutaArxiu(String rutaArxiu) {
+        this.rutaArxiu = rutaArxiu;
+    }
+
+    public String getRutaImatge() {
+        return rutaImatge;
+    }
+
+    public void setRutaImatge(String rutaImatge) {
+        this.rutaImatge = rutaImatge;
+    }
+
+    public int getAny() {
+        return any;
+    }
+
+    public void setAny(int any) {
+        this.any = any;
+    }
+    
     @Override
     public String toString() {
-        return nom +' '+ autor +' '+ album;
+        return "Cancion{" + "nom=" + nom + ", autor=" + autor + ", album=" + album + ", durada=" + durada + ", rutaArxiu=" + rutaArxiu + ", rutaImatge=" + rutaImatge + ", any=" + any + '}';
     }
 }
