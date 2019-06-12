@@ -20,8 +20,8 @@ public class LlegeixJSON {
             JSONObject llista1 = (JSONObject) parser.parse(new FileReader("llista" + option + ".json"));
 
             nom = (String) llista1.get("nom");
-            num = (String) llista1.get("descripcio");
-            cançons = (ArrayList) llista1.get("llistatarxius");
+            num = (String) llista1.get("num");
+            cançons = (ArrayList) llista1.get("cançons");
             llistarepro = new llistaReproduccio(nom, num, cançons);
 
         } catch (FileNotFoundException e) {
