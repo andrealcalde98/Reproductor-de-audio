@@ -20,13 +20,13 @@ import org.json.simple.parser.ParseException;
  * @author analc
  */
 public class Cancion {
-    private String nom;
-    private String autor;
-    private String album;
-    private int durada;
-    private String rutaArxiu;
-    private String rutaImatge;
-    private int any;
+    String nom;
+    String autor;
+    String album;
+    int durada;
+    String rutaArxiu;
+    String rutaImatge;
+    int any;
 
     public Cancion(String nom, String autor, String album, int durada, String rutaArxiu, int any) {
         this.nom = nom;

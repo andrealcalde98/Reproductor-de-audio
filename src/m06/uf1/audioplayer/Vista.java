@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.parsers.ParserConfigurationException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -36,7 +37,7 @@ public class Vista extends JFrame{
     private JButton continuar;
     private JPanel panelScrollBar;
     private JSlider slider;
-    public Vista() {
+    public Vista() throws IOException, ParserConfigurationException {
 
         finestra = new JFrame("Reproductor Àudio");
         finestra.setSize(1200, 800);
@@ -55,11 +56,11 @@ public class Vista extends JFrame{
         listas.addItem("Totes les cançons");       
         //MODIFICACION TABLA
          
-        LlegeixJSON lee = new LlegeixJSON();
-        ArrayList<Cancion> list = lee.ListCanciones();
-        Object rowData[] = new Object[3];                         
+        ArrayList<Cancion> list = LeerCancionXML.LeerCancion();
+
+        Object rowData[] = new Object[5];                         
         Object[][] datos = null;          
-        String[] columnNames = {"Titulo","Autor","Album"}; 
+        String[] columnNames = {"Titulo","Autor","Album","Durada","Ruta Archius","Any"}; 
         DefaultTableModel dtm= new DefaultTableModel(datos, columnNames); 
         canciones = new JTable(dtm);
         for(int i = 0; i < list.size(); i++)
@@ -67,6 +68,9 @@ public class Vista extends JFrame{
             rowData[0] = list.get(i).nom;
             rowData[1] = list.get(i).autor;
             rowData[2] = list.get(i).album;
+            rowData[3] = list.get(i).durada;
+            rowData[4] = list.get(i).rutaArxiu;
+            rowData[5] = list.get(i).any;
             dtm.addRow(rowData);
            
         }  
