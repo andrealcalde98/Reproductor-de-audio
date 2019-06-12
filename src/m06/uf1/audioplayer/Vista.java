@@ -1,29 +1,17 @@
 package m06.uf1.audioplayer;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.TableModel;
 import javax.xml.parsers.ParserConfigurationException;
-import m06.uf1.audioplayer.Cancion;
-import m06.uf1.audioplayer.llistaReproduccio;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import m06.uf1.audioplayer.ControladorAudio;
-import m06.uf1.audioplayer.LeerXML;
-import m06.uf1.audioplayer.LlegeixJSON;
 
 public class Vista {
 
@@ -45,7 +33,6 @@ public class Vista {
 
     private JScrollPane pane;
     private int lista;
-    private ImageIcon imagen;
 
     public Vista() throws IOException, ParserConfigurationException {
 

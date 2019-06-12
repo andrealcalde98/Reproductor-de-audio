@@ -94,7 +94,7 @@ public class EscriuXML {
             durada3.appendChild(doc.createTextNode("235"));
             cancion3.appendChild(durada3);
             // Ruta Arxiu
-            Element ruta3 = doc.createElement("rutaArxiu");
+            Element ruta3 = doc.createElement("ruta");
             ruta3.appendChild(doc.createTextNode("audios/drake - controlla.mp3"));
             cancion3.appendChild(ruta3);
             raiz.appendChild(cancion3);
@@ -118,7 +118,7 @@ public class EscriuXML {
             durada4.appendChild(doc.createTextNode("295"));
             cancion4.appendChild(durada4);
             // Ruta Arxiu
-            Element ruta4 = doc.createElement("rutaArxiu");
+            Element ruta4 = doc.createElement("ruta");
             ruta4.appendChild(doc.createTextNode("audios/drake - hotline bling.mp3"));
             cancion4.appendChild(ruta4);
             raiz.appendChild(cancion4);

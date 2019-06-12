@@ -33,7 +33,7 @@ public class LeerXML {
                     Element autor = (Element) cancion.getElementsByTagName("autor").item(0);
                     Element album = (Element) cancion.getElementsByTagName("album").item(0);
                     Element durada = (Element) cancion.getElementsByTagName("durada").item(0);
-                    Element rutaArxiu = (Element) cancion.getElementsByTagName("rutaArxiu").item(0);
+                    Element rutaArxiu = (Element) cancion.getElementsByTagName("ruta").item(0);
 
                     Cancion song = new Cancion(
                             nom.getChildNodes().item(0).getNodeValue(),
