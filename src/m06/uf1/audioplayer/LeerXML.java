@@ -22,7 +22,7 @@ public class LeerXML {
         ArrayList<Cancion> canciones = new ArrayList<>();
         try {
 
-            document = builder.parse(new File("cancion.xml"));
+            document = builder.parse(new File("canciones.xml"));
             Element arrel = document.getDocumentElement();
             NodeList llistacanciones = arrel.getChildNodes();
             for (int i = 0; i < llistacanciones.getLength(); i++) {

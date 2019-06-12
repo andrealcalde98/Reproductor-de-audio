@@ -15,8 +15,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class ReproductorAudio {
     public static void main(String[] args) throws FileNotFoundException, IOException, ParserConfigurationException {
-        Vista vist = new Vista();     
         Controlador controlador = new Controlador();
-
     }
 }
