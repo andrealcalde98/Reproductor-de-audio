@@ -1,145 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package m06.uf1.audioplayer;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class LlegeixJSON {
-    public static ArrayList ListCanciones() {
-        ArrayList<Cancion> cancion = new ArrayList();
-        try {
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(new FileReader("json/lista1.json"));
-            JSONArray json = (JSONArray) obj;
-            for (int i = 0; i < json.size(); i++) {
-                JSONObject object = (JSONObject) json.get(i);
-                String nom = object.get("nom").toString();
-                String autor = object.get("autor").toString();
-                String album = object.get("album").toString();
-                String durada = object.get("durada").toString();
-                String ruta = object.get("ruta").toString();
-                System.out.println(nom);
-                System.out.println(autor);
-                System.out.println(album);
-                System.out.println(durada);
-                System.out.println(ruta);
-                System.out.println("------------------------------------");
-                Cancion info = new Cancion(nom, autor, album);
-                cancion.add(info);
-                System.out.println(cancion);
 
-            }
+    public static llistaReproduccio LlegeixJSON(int option) {
+        JSONParser parser = new JSONParser();
+        llistaReproduccio llistarepro = null;
+        String nom;
+        String num;
+        ArrayList cançons;
+
+        try {
+            JSONObject llista1 = (JSONObject) parser.parse(new FileReader("llista" + option + ".json"));
+
+            nom = (String) llista1.get("nom");
+            num = (String) llista1.get("descripcio");
+            cançons = (ArrayList) llista1.get("llistatarxius");
+            llistarepro = new llistaReproduccio(nom, num, cançons);
+
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException | ParseException e) {
         }
-        return cancion;
+        return llistarepro;
     }
 
-    public static ArrayList ListCanciones2() {
-        ArrayList<Cancion> cancion = new ArrayList();
-        try {
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(new FileReader("json/lista1.json"));
-            JSONArray json = (JSONArray) obj;
-            for (int i = 0; i < json.size(); i++) {
-                JSONObject object = (JSONObject) json.get(i);
-                String nom = object.get("nom").toString();
-                String autor = object.get("autor").toString();
-                String album = object.get("album").toString();
-                String durada = object.get("durada").toString();
-                String ruta = object.get("ruta").toString();
-                System.out.println(nom);
-                System.out.println(autor);
-                System.out.println(album);
-                System.out.println(durada);
-                System.out.println(ruta);
-                System.out.println("------------------------------------");
-                Cancion info = new Cancion(nom, autor, album);
-                cancion.add(info);
-                System.out.println(cancion);
-
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return cancion;
-    }
-
-    public static ArrayList ListCancionesTotal() {
-        ArrayList<Cancion> cancion = new ArrayList();
-        try {
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(new FileReader("json/lista1.json"));
-            Object obj2 = parser.parse(new FileReader("json/lista2.json"));
-            JSONArray json = (JSONArray) obj;
-            JSONArray json2 = (JSONArray) obj2;
-            for (int i = 0; i < json.size(); i++) {
-                JSONObject object = (JSONObject) json.get(i);
-                String nom = object.get("nom").toString();
-                String autor = object.get("autor").toString();
-                String album = object.get("album").toString();
-                String durada = object.get("durada").toString();
-                String ruta = object.get("ruta").toString();
-                System.out.println(nom);
-                System.out.println(autor);
-                System.out.println(album);
-                System.out.println(durada);
-                System.out.println(ruta);
-                System.out.println("------------------------------------");
-                Cancion info = new Cancion(nom, autor, album);
-                cancion.add(info);
-                System.out.println(cancion);
-            }
-            for (int i = 0; i < json2.size(); i++) {
-                JSONObject object = (JSONObject) json2.get(i);
-                String nom = object.get("nom").toString();
-                String autor = object.get("autor").toString();
-                String album = object.get("album").toString();
-                String durada = object.get("durada").toString();
-                String ruta = object.get("ruta").toString();
-                System.out.println(nom);
-                System.out.println(autor);
-                System.out.println(album);
-                System.out.println(durada);
-                System.out.println(ruta);
-                System.out.println("------------------------------------");
-                Cancion info = new Cancion(nom, autor, album);
-                cancion.add(info);
-                System.out.println(cancion);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return cancion;
-    }
 }
