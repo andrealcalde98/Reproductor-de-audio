@@ -128,7 +128,7 @@ public class EscriuXML {
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "3");
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("cancion.xml"));
+            StreamResult result = new StreamResult(new File("canciones.xml"));
             transformer.transform(source, result);
             
         } catch (ParserConfigurationException ex) {
