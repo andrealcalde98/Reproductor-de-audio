@@ -1,14 +1,4 @@
-[
-{
-        "nom":"Hells Bells",
-        "autor":"ACDC",
-        "album":"Hard Rock",
-        "durada":311,
-        "ruta":"audios/acdc - hells bells.mp3"},
-{
-        "nom":"Hells Bells",
-        "autor":"ACDC",
-        "album":"Hard Rock",
-        "durada":311,
-        "ruta":"audios/acdc - hells bells.mp3"}
-    ]
+{"llistatJSON":
+["audios\/acdc - hells bells.mp3",
+"audios\/acdc - shake a leg.mp3"],
+"nom":"llista1"}
