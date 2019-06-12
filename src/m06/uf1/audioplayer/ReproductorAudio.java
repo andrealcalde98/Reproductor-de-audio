@@ -10,9 +10,13 @@ package m06.uf1.audioplayer;
  * @author Juan
  */
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
 
 public class ReproductorAudio {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ParserConfigurationException {
         Vista vist = new Vista();     
+        Controlador controlador = new Controlador();
+
     }
 }

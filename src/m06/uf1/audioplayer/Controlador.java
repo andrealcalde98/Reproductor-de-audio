@@ -3,6 +3,8 @@ package m06.uf1.audioplayer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 public class Controlador implements ActionListener {
@@ -10,7 +12,7 @@ public class Controlador implements ActionListener {
     private Vista vista;
     private Audio audio;
 
-    public Controlador() {
+    public Controlador() throws ParserConfigurationException, IOException {
         vista = new Vista();
         audio = new Audio("audios/acdc - hells bells.mp3");
         afegirListenerBotons();
