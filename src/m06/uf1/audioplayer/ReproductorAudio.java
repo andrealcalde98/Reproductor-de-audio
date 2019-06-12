@@ -15,6 +15,11 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class ReproductorAudio {
     public static void main(String[] args) throws FileNotFoundException, IOException, ParserConfigurationException {
+        EscriuXML eXML = new EscriuXML();
+        eXML.EscribirCancionXML();
+        GeneraJSON gJSON = new GeneraJSON();
+        gJSON.escriu();
         Controlador controlador = new Controlador();
+        controlador.afegirListenerBotons();
     }
 }
