@@ -2,8 +2,6 @@ package m06.uf1.audioplayer;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
@@ -17,10 +15,6 @@ import javax.swing.JSlider;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.ParserConfigurationException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class Vista extends JFrame {
 
