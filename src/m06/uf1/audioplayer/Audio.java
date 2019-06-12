@@ -37,4 +37,8 @@ public class Audio {
     public String toString() {
         return "Audio{" + "player=" + player + '}';
     }
+
+    Object get(int pos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
