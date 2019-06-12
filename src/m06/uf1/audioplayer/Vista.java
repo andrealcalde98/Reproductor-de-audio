@@ -49,7 +49,7 @@ public class Vista extends JFrame {
         listas.addItem("Totes les cançons");       
         //MODIFICACION TABLA
          
-        ArrayList<Cancion> list = LeerCancionXML.LeerCancion();
+        //ArrayList<Cancion> list = LeerCancionXML.LeerCancion();
 
         Object rowData[] = new Object[5];                         
         Object[][] datos = null;          
@@ -91,7 +91,7 @@ public class Vista extends JFrame {
 
     }
 
-        for(int i = 0; i < list.size(); i++)
+     /*   for(int i = 0; i < list.size(); i++)
         {
             rowData[0] = list.get(i).nom;
             rowData[1] = list.get(i).autor;
@@ -101,7 +101,7 @@ public class Vista extends JFrame {
             rowData[5] = list.get(i).any;
             dtm.addRow(rowData);
            
-        }  
+        } */ 
     public JFrame getFinestra() {
         return finestra;
     }
