@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package m06.uf1.audioplayer;
 
 import m06.uf1.audioplayer.Cancion;
@@ -19,19 +14,20 @@ import org.json.simple.parser.ParseException;
 
 public class llistaReproduccioJSON {
 
-    //private ArrayList<llistaReproduccio> llista;
     private String nomllista;
-    //private String rutaImatge;
+    private String num;
     private ArrayList<Cancion> canciones;
     private String nomArxiu;
 
+    @SuppressWarnings("empty-statement")
     public llistaReproduccioJSON(String nomArxiu) {
         this.nomArxiu = nomArxiu;
         canciones = new ArrayList();
         JSONParser parser = new JSONParser();
         try {
             JSONObject llistaReproduccio = (JSONObject) parser.parse(new FileReader(nomArxiu));
-            nomllista = (String) llistaReproduccio.get("nom Llista");
+            nomllista = (String) llistaReproduccio.get("nom");
+            nomllista = (String) llistaReproduccio.get("num");
             JSONArray jcanciones = (JSONArray) llistaReproduccio.get("canciones");
             for (Object obj : jcanciones) {
                 JSONObject jcancion = (JSONObject) obj;
@@ -39,8 +35,7 @@ public class llistaReproduccioJSON {
                 cancion.setAlbum((String) jcancion.get("album"));
                 cancion.setNom((String) jcancion.get("nom"));
                 cancion.setAutor((String) jcancion.get("autor"));
-                cancion.setAny((Integer) jcancion.get("any"));
-                cancion.setDurada((int) jcancion.get("durada"));
+                cancion.setDurada((String) jcancion.get("durada"));
                 canciones.add(cancion);
             }
         } catch (FileNotFoundException e) {
@@ -58,9 +53,7 @@ public class llistaReproduccioJSON {
 
     public void setNomllista(String nomllista) {
         this.nomllista = nomllista;
-    }
-
-    
+    }   
 
     public ArrayList<Cancion> getCanciones() {
         return canciones;
@@ -68,6 +61,14 @@ public class llistaReproduccioJSON {
 
     public void setCanciones(ArrayList<Cancion> canciones) {
         this.canciones = canciones;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
     }
 
     public String llistarCancons() {
