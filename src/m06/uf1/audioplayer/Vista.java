@@ -21,7 +21,7 @@ import m06.uf1.audioplayer.Cancion;
 import m06.uf1.audioplayer.llistaReproduccio;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-import m06.uf1.audioplayer.Controlador;
+import m06.uf1.audioplayer.ControladorAudio;
 import m06.uf1.audioplayer.LeerXML;
 import m06.uf1.audioplayer.LlegeixJSON;
 

@@ -19,7 +19,7 @@ public class ReproductorAudio {
         eXML.EscribirCancionXML();
         GeneraJSON gJSON = new GeneraJSON();
         gJSON.escriu();
-        Controlador controlador = new Controlador();
+        ControladorAudio controlador = new ControladorAudio();
         controlador.afegirListenerBotons();
     }
 }

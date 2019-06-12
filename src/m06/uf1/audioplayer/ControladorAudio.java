@@ -9,13 +9,13 @@ import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
-public class Controlador implements ActionListener {
+public class ControladorAudio implements ActionListener {
 
     private final Vista vista;
     private final ArrayList<Audio> audio;
     private int pos = 0;
 
-    public Controlador() throws ParserConfigurationException, IOException {
+    public ControladorAudio() throws ParserConfigurationException, IOException {
         vista = new Vista();
         audio = Obtenercanciones();
         
@@ -50,7 +50,7 @@ public class Controlador implements ActionListener {
 
             return audio;
         } catch (IOException | ParserConfigurationException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
 
@@ -66,33 +66,33 @@ public class Controlador implements ActionListener {
                 try {
                     cançons = LeerXML.LeerCancion();
                 } catch (IOException ex) {
-                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParserConfigurationException ex) {
-                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
                 }       
                 audio.get(pos).getPlayer().play();
             } catch (BasicPlayerException ex) {
-                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else if (gestorEsdeveniments.equals(vista.getStop())) {
             try {
                 audio.get(pos).getPlayer().stop();
             } catch (BasicPlayerException ex) {
-                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else if (gestorEsdeveniments.equals(vista.getPausa())) {
             try {
                 audio.get(pos).getPlayer().pause();
             } catch (BasicPlayerException ex) {
-                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (gestorEsdeveniments.equals(vista.getContinuar())) {
             try {
                 audio.get(pos).getPlayer().resume();
             } catch (BasicPlayerException ex) {
-                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else if (gestorEsdeveniments.equals(vista.getComboBox())) {
@@ -106,13 +106,13 @@ public class Controlador implements ActionListener {
                 audio.get(pos).getPlayer().play();
 
             } catch (BasicPlayerException ex) {
-                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IndexOutOfBoundsException e) {
                 pos = 0;
                 try {
                     audio.get(pos).getPlayer().play();
                 } catch (BasicPlayerException ex) {
-                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         } else if (gestorEsdeveniments.equals(vista.getAnterior())) {
@@ -121,13 +121,13 @@ public class Controlador implements ActionListener {
                 pos--;
                 audio.get(pos).getPlayer().play();
             } catch (BasicPlayerException ex) {
-                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IndexOutOfBoundsException e) {
                 pos = 0;
                 try {
                     audio.get(pos).getPlayer().play();
                 } catch (BasicPlayerException ex) {
-                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

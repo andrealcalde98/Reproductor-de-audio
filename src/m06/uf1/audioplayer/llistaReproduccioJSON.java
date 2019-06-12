@@ -1,6 +1,5 @@
 package m06.uf1.audioplayer;
 
-import m06.uf1.audioplayer.Cancion;
 import java.awt.List;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,15 +16,14 @@ public class llistaReproduccioJSON {
     private String nomllista;
     private String num;
     private ArrayList<Cancion> canciones;
-    private String nomArxiu;
+    private String nom;
 
-    @SuppressWarnings("empty-statement")
-    public llistaReproduccioJSON(String nomArxiu) {
-        this.nomArxiu = nomArxiu;
+    public llistaReproduccioJSON(String nom) {
+        this.nom = nom;
         canciones = new ArrayList();
         JSONParser parser = new JSONParser();
         try {
-            JSONObject llistaReproduccio = (JSONObject) parser.parse(new FileReader(nomArxiu));
+            JSONObject llistaReproduccio = (JSONObject) parser.parse(new FileReader(nom));
             nomllista = (String) llistaReproduccio.get("nom");
             nomllista = (String) llistaReproduccio.get("num");
             JSONArray jcanciones = (JSONArray) llistaReproduccio.get("canciones");
@@ -39,7 +37,7 @@ public class llistaReproduccioJSON {
                 canciones.add(cancion);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("No s'ha trobat l'arxiu " + nomArxiu);
+            System.out.println("No s'ha trobat l'arxiu " + nom);
         } catch (IOException e) {
             System.out.println("Error de lectura de l'arxiu");;
         } catch (ParseException e) {
@@ -70,13 +68,6 @@ public class llistaReproduccioJSON {
     public void setNum(String num) {
         this.num = num;
     }
-
-    public String llistarCancons() {
-        String retorn = "LLISTAT DE CANÇONS: \nHi ha un total de " + canciones.size() + " cançons.\n";
-        for (Cancion cancion : canciones) {
-            retorn += cancion.toString() + "\n";
-        }
-        return retorn;
-    }
+    
 
 }
