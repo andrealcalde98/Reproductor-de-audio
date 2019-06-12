@@ -28,13 +28,12 @@ public class Cancion {
     private String rutaImatge;
     private int any;
 
-    public Cancion(String nom, String autor, String album, int durada, String rutaArxiu,String rutaImatge, int any) {
+    public Cancion(String nom, String autor, String album, int durada, String rutaArxiu, int any) {
         this.nom = nom;
         this.autor = autor;
         this.album = album;
         this.durada = durada;
         this.rutaArxiu = rutaArxiu;
-        this.rutaImatge = rutaImatge;
         this.any = any;
     }
 
@@ -81,14 +80,6 @@ public class Cancion {
         this.rutaArxiu = rutaArxiu;
     }
 
-    public String getRutaImatge() {
-        return rutaImatge;
-    }
-
-    public void setRutaImatge(String rutaImatge) {
-        this.rutaImatge = rutaImatge;
-    }
-
     public int getAny() {
         return any;
     }
@@ -99,6 +90,6 @@ public class Cancion {
     
     @Override
     public String toString() {
-        return "Cancion{" + "nom=" + nom + ", autor=" + autor + ", album=" + album + ", durada=" + durada + ", rutaArxiu=" + rutaArxiu + ", rutaImatge=" + rutaImatge + ", any=" + any + '}';
+        return "Cancion{" + "nom=" + nom + ", autor=" + autor + ", album=" + album + ", durada=" + durada + ", rutaArxiu=" + rutaArxiu + ", any=" + any + '}';
     }
 }
