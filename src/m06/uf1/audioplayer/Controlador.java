@@ -2,7 +2,6 @@ package m06.uf1.audioplayer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -12,15 +11,14 @@ import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 public class Controlador implements ActionListener {
 
-    private Vista vista;
-    private ArrayList<Audio> audio;
+    private final Vista vista;
+    private final ArrayList<Audio> audio;
     private int pos = 0;
-
 
     public Controlador() throws ParserConfigurationException, IOException {
         vista = new Vista();
         audio = Obtenercanciones();
-        afegirListenerBotons();
+        
     }
 
     public void afegirListenerBotons() {
@@ -44,7 +42,7 @@ public class Controlador implements ActionListener {
 
             ArrayList<Audio> list = new ArrayList<>();
             for (int i = 0; i < can.size(); i++) {
-                
+
                 Audio audio = new Audio(can.get(i).getRutaArxiu());
                 list.add(audio);
                 System.out.println("Cancion " + can.get(i).getRutaArxiu());
@@ -57,70 +55,81 @@ public class Controlador implements ActionListener {
         return null;
 
     }
-    
-    //Dotem de funcionalitat als botons
+
+     @Override
     public void actionPerformed(ActionEvent esdeveniment) {
-        //Declarem el gestor d'esdeveniments
         Object gestorEsdeveniments = esdeveniment.getSource();
-        ArrayList<Cancion> canciones = null;
         if (gestorEsdeveniments.equals(vista.getPlay())) {
-            //Si hem pitjat el boto play
-            
+            ArrayList<Cancion> cançons = null;
+
+            try {
                 try {
-                    canciones = LeerXML.LeerCancion();
+                    cançons = LeerXML.LeerCancion();
                 } catch (IOException ex) {
                     Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ParserConfigurationException ex) {
                     Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if (gestorEsdeveniments.equals(vista.getPlay())) { try {
-                    //Si hem pitjat el boto play
-                    audio.getPlayer().play(); //reproduim l'àudio
-                } catch (BasicPlayerException ex) {
-                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                    
-                } else if (gestorEsdeveniments.equals(vista.getStop())) {
+                }       
+                audio.get(pos).getPlayer().play();
+            } catch (BasicPlayerException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (gestorEsdeveniments.equals(vista.getStop())) {
+            try {
+                audio.get(pos).getPlayer().stop();
+            } catch (BasicPlayerException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (gestorEsdeveniments.equals(vista.getPausa())) {
+            try {
+                audio.get(pos).getPlayer().pause();
+            } catch (BasicPlayerException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (gestorEsdeveniments.equals(vista.getContinuar())) {
+            try {
+                audio.get(pos).getPlayer().resume();
+            } catch (BasicPlayerException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (gestorEsdeveniments.equals(vista.getComboBox())) {
+            Obtenercanciones();
+            Object elements[][] = null;
+
+        } else if (gestorEsdeveniments.equals(vista.getsiguiente())) {
+            try {
+                audio.get(pos).getPlayer().stop();
+                pos++;
+                audio.get(pos).getPlayer().play();
+
+            } catch (BasicPlayerException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IndexOutOfBoundsException e) {
+                pos = 0;
                 try {
-                    //Si hem pitjat el boto stop
-                    audio.getPlayer().stop(); //parem la reproducció de l'àudio
+                    audio.get(pos).getPlayer().play();
                 } catch (BasicPlayerException ex) {
                     Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                } else if (gestorEsdeveniments.equals(vista.getPausa())) {
+            }
+        } else if (gestorEsdeveniments.equals(vista.getAnterior())) {
+            try {
+                audio.get(pos).getPlayer().stop();
+                pos--;
+                audio.get(pos).getPlayer().play();
+            } catch (BasicPlayerException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IndexOutOfBoundsException e) {
+                pos = 0;
                 try {
-                    //Si hem pitjat el boto stop
-                    audio.getPlayer().pause(); //pausem la reproducció de l'àudio
+                    audio.get(pos).getPlayer().play();
                 } catch (BasicPlayerException ex) {
                     Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                } else if (gestorEsdeveniments.equals(vista.getContinuar())) {
-                try {
-                    //Si hem pitjat el boto stop
-                    audio.getPlayer().resume(); //continuem la reproducció de l'àudio
-                } catch (BasicPlayerException ex) {
-                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                }else if (gestorEsdeveniments.equals(vista.getComboBox())) {
-                    Obtenercanciones();
-                    Object data[][] = null;
-                } else if (gestorEsdeveniments.equals(vista.getsiguiente())) {
-                    try {
-                        audio.getPlayer().stop();
-                        pos++;
-                        audio.getPlayer().play();
-                        
-                    } catch (IndexOutOfBoundsException e) {
-                        pos = 0;
-                        try {
-                            audio.getPlayer().play();
-                        } catch (BasicPlayerException ex) {
-                            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    } catch (BasicPlayerException ex) {
-                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                }
+            }
         }
     }
 }
