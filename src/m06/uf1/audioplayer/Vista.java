@@ -1,10 +1,7 @@
 package m06.uf1.audioplayer;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,8 +9,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class Vista extends JFrame {
@@ -30,6 +25,7 @@ public class Vista extends JFrame {
     private JButton continuar;
     private JPanel panelScrollBar;
     private JSlider slider;
+    private int lista;
 
     public Vista() {
 
@@ -47,7 +43,7 @@ public class Vista extends JFrame {
         listas = new JComboBox();
         listas.addItem("Lista 1");
         listas.addItem("Lista 2");
-        listas.addItem("Totes les cançons");
+
         //MODIFICACION TABLA
         listas.addActionListener(new ActionListener() {
             @Override
@@ -60,20 +56,7 @@ public class Vista extends JFrame {
                 }
             }
         });
-        LlegeixJSON lee = new LlegeixJSON();
-        ArrayList<Cancion> list = LlegeixJSON.LlegeixJSON();
-        Object rowData[] = new Object[3];
-        Object[][] datos = null;
-        String[] columnNames = {"Titulo", "Autor", "Album"};
-        DefaultTableModel dtm = new DefaultTableModel(datos, columnNames);
-        canciones = new JTable(dtm);
-        for (int i = 0; i < list.size(); i++) {
-            rowData[0] = list.get(i).nom;
-            rowData[1] = list.get(i).autor;
-            rowData[2] = list.get(i).album;
-            dtm.addRow(rowData);
 
-        }
         JScrollPane scrollPane = new JScrollPane(canciones);
         canciones.setFillsViewportHeight(true);
         canciones.setPreferredScrollableViewportSize(new Dimension(250, 100));
@@ -108,6 +91,73 @@ public class Vista extends JFrame {
         finestra.setVisible(true);
         finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    }
+
+    public Object[][] getObject(int lista) {
+        Object[][] data = null;
+        llistaReproduccio llistarepro = null;
+        llistarepro = LlegeixJSON.LlegeixJSON(lista);
+        ArrayList<Cancion> song = new ArrayList();
+        String columnNames[] = new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Arxius"};
+        try {
+            song = null;
+            song = LeerXML.LeerCancion();
+            data = new String[4][columnNames.length];
+            for (int i = 0; i < song.size(); i++) {
+                for (int j = 0; j < llistarepro.getCanciones().size(); j++) {
+                    if (song.get(i).getRutaArxiu().equalsIgnoreCase((String) llistarepro.getCanciones().get(j))) {
+
+                        data[j][0] = song.get(i).getNom();
+                        data[j][1] = song.get(i).getAutor();
+                        data[j][2] = song.get(i).getAlbum();
+                        data[j][3] = song.get(i).getDurada();
+                        data[j][4] = song.get(i).getRutaArxiu();
+                    }
+
+                }
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
+
+    public JTable generaInfo(Object data[][], int lista) {
+
+        llistaReproduccio llista = null;
+        llista = LlegeixJSON.LlegeixJSON(lista);
+        ArrayList<Cancion> song = new ArrayList();
+        String columnNames[] = new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Arxius"};
+        try {
+            song = null;
+            song = LeerXML.LeerCancion();
+            data = new String[4][columnNames.length];
+            for (int i = 0; i < song.size(); i++) {
+                for (int j = 0; j < llista.getCanciones().size(); j++) {
+                    if (song.get(i).getRutaArxiu().equalsIgnoreCase((String) llista.getCanciones().get(j))) {
+
+                        data[j][0] = song.get(i).getNom();
+                        data[j][1] = song.get(i).getAutor();
+                        data[j][2] = song.get(i).getAlbum();
+                        data[j][3] = song.get(i).getDurada();
+                        data[j][4] = song.get(i).getRutaArxiu();
+                    }
+
+                }
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JTable tabla = new JTable(data, columnNames);
+        tabla.setCellSelectionEnabled(true);
+        return tabla;
     }
 
     public JFrame getFinestra() {

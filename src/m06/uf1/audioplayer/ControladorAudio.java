@@ -27,16 +27,16 @@ public class ControladorAudio implements ActionListener {
         vista.getPausa().addActionListener(this);
         vista.getContinuar().addActionListener(this);
         
-        vista.getComboBox().addActionListener(this);
+        //vista.getComboBox().addActionListener(this);
     }
 
     public ArrayList<Audio> Obtenercanciones() {
         try {
 
-            String a = (String) vista.getComboBox().getSelectedItem();
-            int lista = Integer.parseInt(a);
-            System.out.println(lista);
-            llistaReproduccio llista = LlegeixJSON.LlegeixJSON(lista);
+            //String a = (String) vista.getComboBox().getSelectedItem();
+            //int lista = Integer.parseInt(a);
+            //System.out.println(lista);
+            //llistaReproduccio llista = LlegeixJSON.LlegeixJSON(lista);
             ArrayList<Cancion> can = LeerXML.LeerCancion();
 
             ArrayList<Audio> list = new ArrayList<>();
@@ -94,9 +94,9 @@ public class ControladorAudio implements ActionListener {
                 Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if (gestorEsdeveniments.equals(vista.getComboBox())) {
+        /*} else if (gestorEsdeveniments.equals(vista.getComboBox())) {
             Obtenercanciones();
-            Object elements[][] = null;
+            Object elements[][] = null;*/
 
         } /*else if (gestorEsdeveniments.equals(vista.getsiguiente())) {
             try {

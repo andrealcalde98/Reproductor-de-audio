@@ -19,13 +19,13 @@
       <autor>Drake</autor>
       <album>R&amp;B</album>
       <durada>235</durada>
-      <rutaArxiu>audios/drake - controlla.mp3</rutaArxiu>
+      <ruta>audios/drake - controlla.mp3</ruta>
    </cancion>
    <cancion>
       <nom>Hotline Bling</nom>
       <autor>Drake</autor>
       <album>R&amp;B</album>
       <durada>295</durada>
-      <rutaArxiu>audios/drake - hotline bling.mp3</rutaArxiu>
+      <ruta>audios/drake - hotline bling.mp3</ruta>
    </cancion>
 </listaTotal>
