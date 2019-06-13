@@ -26,8 +26,7 @@ public class ControladorAudio implements ActionListener {
         vista.getStop().addActionListener(this);
         vista.getPausa().addActionListener(this);
         vista.getContinuar().addActionListener(this);
-        vista.getsiguiente().addActionListener(this);
-        vista.getAnterior().addActionListener(this);
+        
         vista.getComboBox().addActionListener(this);
     }
 
@@ -99,7 +98,7 @@ public class ControladorAudio implements ActionListener {
             Obtenercanciones();
             Object elements[][] = null;
 
-        } else if (gestorEsdeveniments.equals(vista.getsiguiente())) {
+        } /*else if (gestorEsdeveniments.equals(vista.getsiguiente())) {
             try {
                 audio.get(pos).getPlayer().stop();
                 pos++;
@@ -130,6 +129,6 @@ public class ControladorAudio implements ActionListener {
                     Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
+        }*/
     }
 }
