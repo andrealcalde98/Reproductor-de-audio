@@ -11,7 +11,7 @@ import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 public class ControladorAudio implements ActionListener {
 
-    private final Vista vista;
+    private Vista vista;
     private final ArrayList<Audio> audio;
     private int pos = 0;
 
