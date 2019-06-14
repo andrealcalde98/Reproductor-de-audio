@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.table.TableModel;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class Vista extends JFrame {
 
+    Object data[][] = null;
     private JFrame finestra;
     private JPanel panellsup;
     private final JPanel panellinf;
@@ -41,19 +43,58 @@ public class Vista extends JFrame {
         reproduint = new JLabel("cancion en reproduccion");
         //COMBOBOX
         listas = new JComboBox();
-        listas.addItem("Lista 1");
-        listas.addItem("Lista 2");
+        listas.addItem("1");
+        listas.addItem("2");
 
         //MODIFICACION TABLA
         listas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == listas) {
-                    String seleccionado = (String) listas.getSelectedItem();
-                    if (seleccionado == "Lista 1") {
+                String s = (String) listas.getSelectedItem();
+                String columnNames[] = new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Archius", "Any"};
 
-                    }
+                switch (s) {
+                    case "1":
+                        for (int i = 0; i < data.length; i++) {
+                            for (int j = 0; j < data.length; j++) {
+                                System.out.println("data " + data[i][j]);
+                            }
+                        }
+                        JTable tabla = new JTable(data, columnNames);
+                        tabla.getTableHeader().setReorderingAllowed(false);
+                        tabla.setEnabled(false);
+                        tabla.setCellSelectionEnabled(true);
+                        JScrollPane p = new JScrollPane(tabla);
+                        panellsup.add(p);
+
+                        break;
+                    case "2":
+
+                        TableModel modelBuit = new javax.swing.table.DefaultTableModel(
+                                new Object[][]{
+                                    {null, null, null, null, null, null, null,},
+                                    {null, null, null, null, null, null, null,},
+                                    {null, null, null, null, null, null, null,},},
+                                new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Archius", "Any"}
+                        );
+                        // descripcionCancion.setModel(modelBuit);
+
+                        //panelCentro.remove(descripcionCancion);
+                        //panelCentro.remove(pane);
+                        for (int i = 0; i < data.length; i++) {
+                            for (int j = 0; j < data.length; j++) {
+                                System.out.println("data " + data[i][j]);
+                            }
+                        }
+                        JTable nuevaTabla = new JTable(data, columnNames);
+
+                        nuevaTabla.getTableHeader().setReorderingAllowed(false);
+                        nuevaTabla.setEnabled(false);
+                        nuevaTabla.setCellSelectionEnabled(true);
+                        JScrollPane panel = new JScrollPane(nuevaTabla);
+                        panellsup.add(panel);
                 }
+
             }
         });
 
@@ -230,5 +271,9 @@ public class Vista extends JFrame {
 
     public void setContinuar(JButton continuar) {
         this.continuar = continuar;
+    }
+
+    public JComboBox getComboBox() {
+        return listas;
     }
 }
