@@ -24,6 +24,8 @@ public class Vista extends JFrame {
     private JButton stop;
     private JButton pausa;
     private JButton continuar;
+    private JButton anterior;
+    private JButton siguiente;
     private JPanel panelScrollBar;
     private JSlider slider;
 
@@ -115,10 +117,14 @@ public class Vista extends JFrame {
         stop = new JButton("Stop");
         pausa = new JButton("Pause");
         continuar = new JButton("Continue");
+        siguiente = new JButton("Siguiente");
+        anterior = new JButton("Anterior");
         panellinf.add(play);
         panellinf.add(pausa);
         panellinf.add(continuar);
         panellinf.add(stop);
+        panellinf.add(siguiente);
+        panellinf.add(anterior);
 
         //scroll
         panelScrollBar = new JPanel();
@@ -238,5 +244,18 @@ public class Vista extends JFrame {
 
     public JComboBox getComboBox() {
         return listas;
+    }
+     public JButton getAnterior() {
+        return anterior;
+    }
+     public void setAnterior(JButton anterior) {
+        this.anterior = anterior;
+    }
+     public JButton getsiguiente() {
+        return siguiente;
+    }
+
+    public void setsiguiente(JButton siguiente) {
+        this.siguiente = siguiente;
     }
 }

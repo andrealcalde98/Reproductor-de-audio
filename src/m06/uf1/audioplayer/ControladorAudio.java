@@ -90,7 +90,7 @@ public class ControladorAudio implements ActionListener {
             Obtenercanciones();
             Object elements[][] = null;
 
-        } /*else if (gestorEsdeveniments.equals(vista.getsiguiente())) {
+        } else if (gestorEsdeveniments.equals(vista.getsiguiente())) {
             try {
                 audio.get(pos).getPlayer().stop();
                 pos++;
@@ -121,6 +121,6 @@ public class ControladorAudio implements ActionListener {
                     Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }*/
+        }
     }
 }
