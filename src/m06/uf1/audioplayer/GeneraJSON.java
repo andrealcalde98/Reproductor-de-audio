@@ -24,7 +24,7 @@ public class GeneraJSON {
         }
         reproduccion1.put("cançons", cançons2);
         try {
-            FileWriter fitxer = new FileWriter("llista1.json");
+            FileWriter fitxer = new FileWriter("JSON/llista1.json");
             fitxer.write(reproduccion1.toString());
             fitxer.close();
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class GeneraJSON {
         reporduccion2.put("cançons", llistatarxius2);
 
         try {
-            FileWriter fitxer = new FileWriter("llista2.json");
+            FileWriter fitxer = new FileWriter("JSON/llista2.json");
             fitxer.write(reporduccion2.toString());
             fitxer.close();
         } catch (Exception e) {

@@ -71,7 +71,7 @@ public class EscriuXML {
             cancion2.appendChild(durada2);
             // Ruta Arxiu
             Element ruta2 = doc.createElement("ruta");
-            ruta2.appendChild(doc.createTextNode("audios/nickelback - how you remind me.mp3"));
+            ruta2.appendChild(doc.createTextNode("audios/acdc - shake a leg.mp3"));
             cancion2.appendChild(ruta2);
             raiz.appendChild(cancion2);
 

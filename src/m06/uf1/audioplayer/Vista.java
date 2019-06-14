@@ -41,72 +41,40 @@ public class Vista extends JFrame {
         //superior
         panellsup = new JPanel();
         //ETIQUETA
-        reproduint = new JLabel("cancion 1");
+        //ControladorAudio co = new ControladorAudio();
+        reproduint = new JLabel();
+        reproduint.setText("Llista reproduint: ROCK" );
         //COMBOBOX
         //MODIFICACION TABLA
         listas = new JComboBox();
         listas.addItem("1");
         listas.addItem("2");
-        
-        
-        listas.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = (String) listas.getSelectedItem();
-                String columnNames[] = new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Archiu"};
-
-                switch (s) {
-                    case "1":
-                        /*Object one[][] = getObject(1);
-                        for (int i = 0; i < one.length; i++) {
-                            for (int j = 0; j < one.length; j++) {
-                            }
-                        }
-                        JTable tabla = new JTable(data, columnNames);
-                        tabla.getTableHeader().setReorderingAllowed(false);
-                        tabla.setEnabled(false);
-                        tabla.setCellSelectionEnabled(true);
-                        JScrollPane p = new JScrollPane(tabla);
-                        panellsup.add(p);
-                        break;*/
-                        
-                        case "2":
-
-                        /*TableModel modelBuit = new javax.swing.table.DefaultTableModel(
-                                new Object[][]{
-                                    {null, null, null, null, null, null, null,},
-                                    {null, null, null, null, null, null, null,},
-                                    {null, null, null, null, null, null, null,},},
-                                new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Archius", "Any"}
-                        );
-                        // descripcionCancion.setModel(modelBuit);
-
-                        //panelCentro.remove(descripcionCancion);
-                        //panelCentro.remove(pane);
-                        for (int i = 0; i < data.length; i++) {
-                            for (int j = 0; j < data.length; j++) {
-                                System.out.println("data " + data[i][j]);
-                            }
-                        }
-                        JTable nuevaTabla = new JTable(data, columnNames);
-
-                        nuevaTabla.getTableHeader().setReorderingAllowed(false);
-                        nuevaTabla.setEnabled(false);
-                        nuevaTabla.setCellSelectionEnabled(true);
-                        JScrollPane panel = new JScrollPane(nuevaTabla);
-                        panellsup.add(panel);*/
-                }
-
-            }
-        });
-        canciones = setTabla(data, 1);
+        canciones = setTabla2(data, 1);
         JScrollPane scrollPane = new JScrollPane(canciones);
         canciones.setFillsViewportHeight(true);
         canciones.setPreferredScrollableViewportSize(new Dimension(250, 100));
         canciones.setCellSelectionEnabled(true);
+        
+        listas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String s = listas.getSelectedItem().toString();
+                if ("1".equals(s)) {
+                        reproduint.setText("Llista reproduint: ROCK");
+                        canciones.removeAll();
+                        canciones = setTabla1(data, 1);
+                } else if ("2".equals(s)){        
+                        reproduint.setText("Llista reproduint: RB");
+                        canciones.removeAll();
+                        canciones = setTabla2(data, 1);
+                }
 
+            }
+        });
+        
+
+        
         panellsup.add(scrollPane);
-
         panellsup.add(reproduint);
         panellsup.add(listas);
 
@@ -142,7 +110,7 @@ public class Vista extends JFrame {
 
     }
     
-    public JTable setTabla(Object data[][], int lista) {
+    public JTable setTabla1(Object data[][], int lista) {
 
         ArrayList<Cancion> song = new ArrayList();
         String columnNames[] = new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Arxius"};
@@ -150,7 +118,35 @@ public class Vista extends JFrame {
             song = null;
             song = LeerXML.LeerCancion();
             data = new String[song.size()][columnNames.length];
-            for (int i = 0; i < song.size(); i++) {
+            for (int i = 0; i < song.size()/2; i++) {
+
+                data[i][0] = song.get(i).getNom();
+                data[i][1] = song.get(i).getAutor();
+                data[i][2] = song.get(i).getAlbum();
+                data[i][3] = song.get(i).getDurada();
+                data[i][4] = song.get(i).getRutaArxiu();
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JTable tabla = new JTable(data, columnNames);
+        tabla.setCellSelectionEnabled(true);
+        return tabla;
+    }
+    
+    public JTable setTabla2(Object data[][], int lista) {
+
+        ArrayList<Cancion> song = new ArrayList();
+        String columnNames[] = new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Arxius"};
+        try {
+            song = null;
+            song = LeerXML.LeerCancion();
+            data = new String[song.size()][columnNames.length];
+            for (int i = 2; i < song.size(); i++) {
 
                 data[i][0] = song.get(i).getNom();
                 data[i][1] = song.get(i).getAutor();

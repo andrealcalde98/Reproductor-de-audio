@@ -12,13 +12,12 @@ import javazoom.jlgui.basicplayer.BasicPlayerException;
 public class ControladorAudio implements ActionListener {
 
     private Vista vista;
-    private final ArrayList<Audio> audio;
+    private ArrayList<Audio> audio;
     private int pos = 0;
 
     public ControladorAudio() throws ParserConfigurationException, IOException {
         vista = new Vista();
-        audio = Obtenercanciones();
-        
+        audio = Obtenercanciones();      
     }
 
     public void afegirListenerBotons() {
@@ -26,71 +25,83 @@ public class ControladorAudio implements ActionListener {
         vista.getStop().addActionListener(this);
         vista.getPausa().addActionListener(this);
         vista.getContinuar().addActionListener(this);
-        
+        vista.getsiguiente().addActionListener(this);
+        vista.getAnterior().addActionListener(this);
         vista.getComboBox().addActionListener(this);
     }
 
     public ArrayList<Audio> Obtenercanciones() {
         try {
 
-            String a = (String) vista.getComboBox().getSelectedItem();
-            int lista = Integer.parseInt(a);
-            System.out.println(lista);
-            llistaReproduccio llista = LlegeixJSON.LlegeixJSON(lista);
-            ArrayList<Cancion> can = LeerXML.LeerCancion();
+            String a = vista.getComboBox().getSelectedItem().toString();
+            ArrayList<Cancion> song = LeerXML.LeerCancion();
 
             ArrayList<Audio> list = new ArrayList<>();
-            for (int i = 0; i < can.size(); i++) {
+            if ("1".equals(a)) {
+                for (int i = 0; i < song.size(); i++) {
 
-                Audio audio = new Audio(can.get(i).getRutaArxiu());
-                list.add(audio);
-                System.out.println("Cancion " + can.get(i).getRutaArxiu());
+                    Audio audio = new Audio(song.get(i).getRutaArxiu());
+                    list.add(audio);
+                    System.out.println("Cancion " + song.get(i).getRutaArxiu());
+                }
+            } else if ("2".equals(a)) {
+                for (int i = 2; i < song.size(); i++) {
+
+                    Audio audio = new Audio(song.get(i).getRutaArxiu());
+                    list.add(audio);
+                    System.out.println("Cancion " + song.get(i).getRutaArxiu());
+                }
             }
 
-            return audio;
+            return list;
         } catch (IOException | ParserConfigurationException ex) {
             Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
 
     }
-    
-     @Override
-    public void actionPerformed(ActionEvent esdeveniment) {
-        Object gestorEsdeveniments = esdeveniment.getSource();
-        if (gestorEsdeveniments.equals(vista.getPlay())) {
 
-            try {           
+    @Override
+    public void actionPerformed(ActionEvent esdeveniment) {
+        Object gestorAction = esdeveniment.getSource();
+        if (gestorAction.equals(vista.getPlay())) {
+            ArrayList<Cancion> canciones = null;
+
+            try {
+                try {
+                    canciones = LeerXML.LeerCancion();
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParserConfigurationException ex) {
+                    Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
                 audio.get(pos).getPlayer().play();
             } catch (BasicPlayerException ex) {
                 Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if (gestorEsdeveniments.equals(vista.getStop())) {
+        } else if (gestorAction.equals(vista.getStop())) {
             try {
                 audio.get(pos).getPlayer().stop();
             } catch (BasicPlayerException ex) {
                 Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if (gestorEsdeveniments.equals(vista.getPausa())) {
+        } else if (gestorAction.equals(vista.getPausa())) {
             try {
                 audio.get(pos).getPlayer().pause();
             } catch (BasicPlayerException ex) {
                 Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (gestorEsdeveniments.equals(vista.getContinuar())) {
+        } else if (gestorAction.equals(vista.getContinuar())) {
             try {
                 audio.get(pos).getPlayer().resume();
             } catch (BasicPlayerException ex) {
                 Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if (gestorEsdeveniments.equals(vista.getComboBox())) {
-            Obtenercanciones();
-            Object elements[][] = null;
-
-        } else if (gestorEsdeveniments.equals(vista.getsiguiente())) {
+        } else if (gestorAction.equals(vista.getsiguiente())) {
             try {
                 audio.get(pos).getPlayer().stop();
                 pos++;
@@ -106,7 +117,7 @@ public class ControladorAudio implements ActionListener {
                     Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } else if (gestorEsdeveniments.equals(vista.getAnterior())) {
+        } else if (gestorAction.equals(vista.getAnterior())) {
             try {
                 audio.get(pos).getPlayer().stop();
                 pos--;
