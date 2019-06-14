@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.table.TableModel;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class Vista extends JFrame {
@@ -27,9 +26,9 @@ public class Vista extends JFrame {
     private JButton continuar;
     private JPanel panelScrollBar;
     private JSlider slider;
-    private int lista;
 
-    public Vista() {
+
+    public Vista() throws ParserConfigurationException, IOException {
 
         finestra = new JFrame("Reproductor Àudio");
         finestra.setSize(1200, 800);
@@ -40,24 +39,25 @@ public class Vista extends JFrame {
         //superior
         panellsup = new JPanel();
         //ETIQUETA
-        reproduint = new JLabel("cancion en reproduccion");
+        reproduint = new JLabel("cancion 1");
         //COMBOBOX
+        //MODIFICACION TABLA
         listas = new JComboBox();
         listas.addItem("1");
         listas.addItem("2");
-
-        //MODIFICACION TABLA
+        
+        
         listas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = (String) listas.getSelectedItem();
-                String columnNames[] = new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Archius", "Any"};
+                String columnNames[] = new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Archiu"};
 
                 switch (s) {
                     case "1":
-                        for (int i = 0; i < data.length; i++) {
-                            for (int j = 0; j < data.length; j++) {
-                                System.out.println("data " + data[i][j]);
+                        /*Object one[][] = getObject(1);
+                        for (int i = 0; i < one.length; i++) {
+                            for (int j = 0; j < one.length; j++) {
                             }
                         }
                         JTable tabla = new JTable(data, columnNames);
@@ -66,11 +66,11 @@ public class Vista extends JFrame {
                         tabla.setCellSelectionEnabled(true);
                         JScrollPane p = new JScrollPane(tabla);
                         panellsup.add(p);
+                        break;*/
+                        
+                        case "2":
 
-                        break;
-                    case "2":
-
-                        TableModel modelBuit = new javax.swing.table.DefaultTableModel(
+                        /*TableModel modelBuit = new javax.swing.table.DefaultTableModel(
                                 new Object[][]{
                                     {null, null, null, null, null, null, null,},
                                     {null, null, null, null, null, null, null,},
@@ -92,15 +92,17 @@ public class Vista extends JFrame {
                         nuevaTabla.setEnabled(false);
                         nuevaTabla.setCellSelectionEnabled(true);
                         JScrollPane panel = new JScrollPane(nuevaTabla);
-                        panellsup.add(panel);
+                        panellsup.add(panel);*/
                 }
 
             }
         });
-
+        canciones = setTabla(data, 1);
         JScrollPane scrollPane = new JScrollPane(canciones);
         canciones.setFillsViewportHeight(true);
         canciones.setPreferredScrollableViewportSize(new Dimension(250, 100));
+        canciones.setCellSelectionEnabled(true);
+
         panellsup.add(scrollPane);
 
         panellsup.add(reproduint);
@@ -133,61 +135,22 @@ public class Vista extends JFrame {
         finestra.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
+    
+    public JTable setTabla(Object data[][], int lista) {
 
-    public Object[][] getObject(int lista) {
-        Object[][] data = null;
-        llistaReproduccio llistarepro = null;
-        llistarepro = LlegeixJSON.LlegeixJSON(lista);
         ArrayList<Cancion> song = new ArrayList();
         String columnNames[] = new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Arxius"};
         try {
             song = null;
             song = LeerXML.LeerCancion();
-            data = new String[4][columnNames.length];
+            data = new String[song.size()][columnNames.length];
             for (int i = 0; i < song.size(); i++) {
-                for (int j = 0; j < llistarepro.getCanciones().size(); j++) {
-                    if (song.get(i).getRutaArxiu().equalsIgnoreCase((String) llistarepro.getCanciones().get(j))) {
 
-                        data[j][0] = song.get(i).getNom();
-                        data[j][1] = song.get(i).getAutor();
-                        data[j][2] = song.get(i).getAlbum();
-                        data[j][3] = song.get(i).getDurada();
-                        data[j][4] = song.get(i).getRutaArxiu();
-                    }
-
-                }
-            }
-
-        } catch (IOException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return data;
-    }
-
-    public JTable generaInfo(Object data[][], int lista) {
-
-        llistaReproduccio llista = null;
-        llista = LlegeixJSON.LlegeixJSON(lista);
-        ArrayList<Cancion> song = new ArrayList();
-        String columnNames[] = new String[]{"Nom", "Autor", "Album", "Durada", "Ruta Arxius"};
-        try {
-            song = null;
-            song = LeerXML.LeerCancion();
-            data = new String[4][columnNames.length];
-            for (int i = 0; i < song.size(); i++) {
-                for (int j = 0; j < llista.getCanciones().size(); j++) {
-                    if (song.get(i).getRutaArxiu().equalsIgnoreCase((String) llista.getCanciones().get(j))) {
-
-                        data[j][0] = song.get(i).getNom();
-                        data[j][1] = song.get(i).getAutor();
-                        data[j][2] = song.get(i).getAlbum();
-                        data[j][3] = song.get(i).getDurada();
-                        data[j][4] = song.get(i).getRutaArxiu();
-                    }
-
-                }
+                data[i][0] = song.get(i).getNom();
+                data[i][1] = song.get(i).getAutor();
+                data[i][2] = song.get(i).getAlbum();
+                data[i][3] = song.get(i).getDurada();
+                data[i][4] = song.get(i).getRutaArxiu();
             }
 
         } catch (IOException ex) {

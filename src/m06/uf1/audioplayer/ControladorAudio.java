@@ -54,21 +54,13 @@ public class ControladorAudio implements ActionListener {
         return null;
 
     }
-
+    
      @Override
     public void actionPerformed(ActionEvent esdeveniment) {
         Object gestorEsdeveniments = esdeveniment.getSource();
         if (gestorEsdeveniments.equals(vista.getPlay())) {
-            ArrayList<Cancion> cançons = null;
 
-            try {
-                try {
-                    cançons = LeerXML.LeerCancion();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ParserConfigurationException ex) {
-                    Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);
-                }       
+            try {           
                 audio.get(pos).getPlayer().play();
             } catch (BasicPlayerException ex) {
                 Logger.getLogger(ControladorAudio.class.getName()).log(Level.SEVERE, null, ex);

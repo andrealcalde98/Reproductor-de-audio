@@ -63,7 +63,5 @@ public class Cancion {
         return "Cancion{" + "nom=" + nom + ", autor=" + autor + ", album=" + album + ", durada=" + durada + ", rutaArxiu=" + rutaArxiu + '}';
     }
 
-    int getAny() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
